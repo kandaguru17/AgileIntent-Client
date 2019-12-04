@@ -15,7 +15,9 @@ import setHeaders from '../api/jsonAPI'
 import store from '../Reducers';
 import { logOut } from '../Actions/SecurityActions'
 import history from '../history'
-import ProjectTaskList from './ProjectTask/ProjectTaskList'
+import ProjectTaskList from './ProjectTask/ProjectTaskList';
+import CreateProjectTask from './ProjectTask/CreateProjectTask';
+import ProjectTaskShow from './ProjectTask/ProjectTaskShow';
 
 const token = localStorage.token
 if (token) {
@@ -54,6 +56,8 @@ class App extends Component {
           <SecuredRoute exact path='/project/:id' component={ ShowProject } />
 
           <SecuredRoute exact path='/project/:projectId/projectTask/' component={ ProjectTaskList } />
+          <SecuredRoute exact path='/project/:projectId/new' component={ CreateProjectTask } />
+          <SecuredRoute exact path='/project/:projectId/projectTask/:projectTaskId' component={ ProjectTaskShow } />
         </Switch>
       </div>
     )

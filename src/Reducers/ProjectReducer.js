@@ -37,7 +37,6 @@ export const projectReducer = (state = {}, action) => {
 export const errorReducer = (state = {}, action) => {
     switch (action.type) {
         case 'ERROR':
-            console.log(action.payload);
             return action.payload;
 
         default: return state;

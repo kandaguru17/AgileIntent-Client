@@ -21,12 +21,18 @@ class Authentication extends Component {
     checkValidationErrors = () => {
         const { error } = this.props
         const errArr = Object.entries(error);
-        return errArr.length > 0 && <Message
+        console.log(errArr);
+        if(errArr.length > 0){
+        const newErrArr=errArr.map((it,i)=>{
+                return (`${it[0]} : ${it[1]}`);
+            })
+        return <Message
             negative
             header='There was some errors with your submission'
-            list={ errArr }
+            list={ newErrArr }
             style={ { position: 'relative', top: 50, width: '40%', margin: '0 auto' } } ></Message>
-    }
+        }    
+}
 
     checkAlreadyLoggedIn = () => {
         const { user } = this.props.auth;
@@ -37,9 +43,9 @@ class Authentication extends Component {
 
     render() {
         return (
-            <>
-                { this.checkValidationErrors() }
+            <> 
                 { this.checkAlreadyLoggedIn() }
+                { this.checkValidationErrors() }
                 <Image size="medium" src={ myLogo } centered />
                 <Segment placeholder style={ { width: '90%', margin: '0 auto', marginTop: '5px' } }>
                     <Grid columns={ 2 } relaxed='very' stackable>

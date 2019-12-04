@@ -51,7 +51,7 @@ export const logOut = () => async dispatch => {
 export const registerUser = (formValues) => async dispatch => {
     try {
         await axios.post(`${ROOT_URL}/users/register`, formValues, { headers });
-        dispatch({ type: 'REGISTER', payload: {} });
+        dispatch({ type: REGISTER, payload: {} });
         history.push('/auth');
     } catch (err) {
         console.log(err);

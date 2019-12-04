@@ -14,7 +14,7 @@ class ProjectForm extends Component {
         let { touched, error } = fieldProps.meta;
         const { fieldPlaceholder } = fieldProps
         error = (touched && error) ? { content: error, pointing: 'below' } : false
-        return (<Form.Input error={ error } autoComplete="off" width={ 6 } placeholder={ fieldPlaceholder } { ...fieldProps.input } />);
+        return (<Form.Input error={ error } autoComplete="off" width={ 8 } placeholder={ fieldPlaceholder } { ...fieldProps.input } />);
     }
 
     renderTextArea = (fieldProps) => {
@@ -22,7 +22,7 @@ class ProjectForm extends Component {
         const { fieldPlaceholder } = fieldProps;
         error = (touched && error) ? { content: error } : false
         return (
-            <Form.TextArea error={ error } autoComplete="off" placeholder={ fieldPlaceholder } width={ 6 }  { ...fieldProps.input } rows="10" />
+            <Form.TextArea error={ error } autoComplete="off" placeholder={ fieldPlaceholder } width={ 8 }  { ...fieldProps.input } rows="10" />
         );
     }
 
@@ -32,7 +32,7 @@ class ProjectForm extends Component {
         return (
             <>
                 <Form.Input type="label">{ fieldPlaceholder }</Form.Input>
-                <Form.Input type="date" name={ name } { ...fieldProps.input } width={ 6 } format="DD MMMM YYYY" />
+                <Form.Input type="date" name={ name } { ...fieldProps.input } width={ 8 } format="DD MMMM YYYY" />
             </>
         )
     }
@@ -46,19 +46,19 @@ class ProjectForm extends Component {
         const { handleSubmit } = this.props;
         return (
             <>
-                <Header as='h2' icon textAlign="center" style={ { marginTop: '150px' } }>
+                <Header as='h2' textAlign="center" icon style={ { marginTop: '150px'} }>
                     <Icon name='settings' />
                     { this.props.formName }
                 </Header>
 
                 <Form onSubmit={ handleSubmit(this.onFormSubmit) }>
-                    <Form.Group grouped style={ { marginLeft: '38%' } }>
+                    <Form.Group grouped style={ { marginLeft: '33%' } }>
                         <Field name="projectIdentifier" component={ this.renderInput } fieldPlaceholder="Enter Project Identifier" />
-                        <Field name="projectName" component={ this.renderInput } fieldPlaceholder="Enter Project Name" />
-                        <Field name="description" component={ this.renderTextArea } fieldPlaceholder="Enter Project Description" />
-                        <Field name="startDate" component={ this.renderDate } fieldPlaceholder="Enter Project Start Date" />
-                        <Field name="endDate" component={ this.renderDate } fieldPlaceholder="Enter Project End Date" />
-                        <Button positive type='submit' icon="plus" content={ this.props.formName } style={ { display: 'block', marginTop: '15px', width: '38%' } } ></Button>
+                        <Field name="projectName" component={ this.renderInput } fieldPlaceholder=" Project Name" />
+                        <Field name="description" component={ this.renderTextArea } fieldPlaceholder=" Project Description" />
+                        <Field name="startDate" component={ this.renderDate } fieldPlaceholder="Project Start Date" />
+                        <Field name="endDate" component={ this.renderDate } fieldPlaceholder="Project End Date" />
+                        <Button positive type='submit' icon="plus" content={ this.props.formName } style={ { display: 'block', margin: '15px 0 15px 140px' } } ></Button>
                     </Form.Group>
                 </Form>
             </>
@@ -71,9 +71,9 @@ const formValidations = (formValues) => {
 
     const error = {}
 
-    if (!formValues.projectIdentifier){
+    if (!formValues.projectIdentifier) {
         error.projectIdentifier = 'Project Identifier is mandatory';
-    }else if(!(formValues.projectIdentifier.length > 3 && formValues.projectIdentifier.length < 6 )){
+    } else if (!(formValues.projectIdentifier.length > 3 && formValues.projectIdentifier.length < 6)) {
         error.projectIdentifier = 'Project Identifier should be 4 or 5 characters in length';
     }
 
@@ -81,7 +81,7 @@ const formValidations = (formValues) => {
         error.projectName = 'Project Name is mandatory';
 
     if (!formValues.description)
-        error.description = 'Description is mandatory'; 
+        error.description = 'Description is mandatory';
 
     return error;
 }

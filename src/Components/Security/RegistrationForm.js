@@ -8,12 +8,11 @@ class RegistrationForm extends Component {
         let { touched, error } = fieldProps.meta;
 
         console.log(error, touched)
-        error = (touched && error) ? { content: error, pointing: 'below' } : false;
+        error = (touched && error) ? true : false;
         return (
             <Form.Input error={ error } { ...fieldProps }></Form.Input>
         )
     }
-
 
     registerUser = (formValues) => {
         this.props.registerUser(formValues);
@@ -26,19 +25,18 @@ class RegistrationForm extends Component {
             <Form onSubmit={ handleSubmit(this.registerUser) }>
                 <Header as='h2' textAlign='center'>
                     <Icon size="tiny" name='user' />
-                    Sign up
+                    Sign Up
                 </Header>
-                <Field name="firstName" placeholder="firstName" component={ this.renderInput } width={ 6 }></Field>
-                <Field name="lastName" placeholder="lastName" component={ this.renderInput } width={ 6 }></Field>
-                <Field name="username" placeholder="username" component={ this.renderInput } width={ 6 }></Field>
-                <Field name="password" placeholder="password" component={ this.renderInput } type="password" width={ 6 }></Field>
-                <Field name="confirmPassword" placeholder="confirmPassword" component={ this.renderInput } type="password" width={ 6 }></Field>
+                <Field name="firstName" placeholder="First Name" component={ this.renderInput } width={ 6 }></Field>
+                <Field name="lastName" placeholder="Last Name" component={ this.renderInput } width={ 6 }></Field>
+                <Field name="username" placeholder="User Name" component={ this.renderInput } width={ 6 }></Field>
+                <Field name="password" placeholder="Password" component={ this.renderInput } type="password" width={ 6 }></Field>
+                <Field name="confirmPassword" placeholder="Confirm Password" component={ this.renderInput } type="password" width={ 6 }></Field>
                 <Button positive type="submit" content="Register" />
             </Form>
         )
     }
 }
-
 
 const validateForm = (formValues) => {
 

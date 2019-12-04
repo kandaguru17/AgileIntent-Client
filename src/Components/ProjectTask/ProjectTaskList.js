@@ -13,11 +13,10 @@ class ProjectTaskList extends Component {
         this.props.getAllProjectTasks(projectId);
     }
 
-
     renderProjectTasks = () => {
         return this.props.projectTasks.length !== 0 ?
-            <Segment>
-                <Card.Group>
+            <Segment >
+                <Card.Group >
                     { this.props.projectTasks.map(it => <ProjectTaskItem key={ it.projectTaskSequence } { ...it } />) }
                 </Card.Group>
             </Segment>
@@ -29,17 +28,16 @@ class ProjectTaskList extends Component {
 
     render() {
         const { projectId } = this.props.match.params;
-
         return (
-            <div style={ { position: 'relative', top: 100, width: '80%', margin: '0 auto' } }>
-                <Button color="teal"  icon="plus" content="Create new Task" as={ Link } to={ `/project/${projectId}/new` } />
+            <div style={ { position: 'relative', top: 100, width: '90%', margin: '0 auto' } }>
+                <Button color="teal" icon="plus" content="Create New Task" as={ Link } to={ `/project/${projectId}/new` } />
                 { this.renderProjectTasks() }
             </div>
         )
     }
 }
 
-const mapStateToProps = (state, pwnProps) => {
+const mapStateToProps = (state, ownProps) => {
     console.log(state);
     return { projects: state.projects, projectTasks: Object.values(state.projectTasks), auth: state.auth };
 }

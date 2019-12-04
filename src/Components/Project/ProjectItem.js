@@ -36,7 +36,6 @@ class ProjectItem extends Component {
 
                         <Button as={ Link } to={ `/project/delete/${project.projectIdentifier}` } negative>Delete Project</Button>
 
-
                     </Button.Group>
                 </Card.Content>
 

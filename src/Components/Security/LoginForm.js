@@ -6,8 +6,7 @@ class LoginForm extends Component {
 
     renderInput = (fieldProps) => {
         let { touched, error } = fieldProps.meta;
-        error = (touched && error) ? { content: error, pointing: 'below' } : false;
-
+        error = (touched && error) ? true : false;
         return (
             <Form.Input error={ error } { ...fieldProps }></Form.Input>
         )
@@ -26,9 +25,9 @@ class LoginForm extends Component {
                         <Icon size="tiny" name='sign in' />
                         Log In
                     </Header>
-                    <Field component={ this.renderInput } placeholder="username" width={ 6 } name="username"></Field>
-                    <Field component={ this.renderInput } placeholder="password" width={ 6 } type="password" name="password"></Field>
-                    <Button primary type="submit" content="Login"></Button>
+                    <Field component={ this.renderInput } placeholder="Email" width={ 6 } name="username"></Field>
+                    <Field component={ this.renderInput } placeholder="Password" width={ 6 } type="password" name="password"></Field>
+                    <Button primary type="submit" content="Log In"></Button>
                 </Form>
             </>
 
@@ -41,7 +40,7 @@ const formValidations = (formValues) => {
 
     const error = {}
     if (!formValues.username) {
-        error.username = 'username is required';
+        error.username = 'User Name is required';
     }
 
     if (!formValues.password)
