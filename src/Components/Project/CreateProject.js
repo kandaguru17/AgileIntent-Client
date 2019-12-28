@@ -14,9 +14,9 @@ class CreateProject extends Component {
     render() {
 
         return (
-            <>
+            <div style={ { position: 'relative', top: 100, left: '27%', width: '90%' } }>
                 <ProjectForm onSubmit={ this.onSubmit } formName="Create New Project" />
-            </>
+            </div>
 
 
         )

@@ -4,7 +4,7 @@ import ProjectTaskItem from './ProjectTaskItem';
 import { connect } from 'react-redux';
 import { getAllProjectTasks } from '../../Actions/ProjectTaskActions';
 import { getProject } from '../../Actions/ProjectActions';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 class ProjectTaskList extends Component {
 
@@ -30,7 +30,7 @@ class ProjectTaskList extends Component {
         const { projectId } = this.props.match.params;
         return (
             <div style={ { position: 'relative', top: 100, width: '90%', margin: '0 auto' } }>
-                <Button color="teal" icon="plus" content="Create New Task" as={ Link } to={ `/project/${projectId}/new` } />
+                <Button basic color="teal" icon="plus" content="Create New Task" as={ Link } to={ `/project/${projectId}/new` } />
                 { this.renderProjectTasks() }
             </div>
         )
@@ -38,7 +38,6 @@ class ProjectTaskList extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state);
     return { projects: state.projects, projectTasks: Object.values(state.projectTasks), auth: state.auth };
 }
 

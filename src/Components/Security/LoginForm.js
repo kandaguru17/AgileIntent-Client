@@ -13,6 +13,7 @@ class LoginForm extends Component {
     }
 
     onFormSubmit = (formValues) => {
+        console.log(formValues);
         this.props.authenticate(formValues);
     }
 

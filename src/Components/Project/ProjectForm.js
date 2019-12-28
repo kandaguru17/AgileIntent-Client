@@ -38,7 +38,6 @@ class ProjectForm extends Component {
     }
 
     onFormSubmit = (formValues) => {
-        console.log(formValues);
         this.props.onSubmit(formValues);
     }
 
@@ -46,20 +45,19 @@ class ProjectForm extends Component {
         const { handleSubmit } = this.props;
         return (
             <>
-                <Header as='h2' textAlign="center" icon style={ { marginTop: '150px'} }>
+                <Header as='h2' icon style={ { marginLeft: '200px' } }>
                     <Icon name='settings' />
                     { this.props.formName }
                 </Header>
-
-                <Form onSubmit={ handleSubmit(this.onFormSubmit) }>
-                    <Form.Group grouped style={ { marginLeft: '33%' } }>
-                        <Field name="projectIdentifier" component={ this.renderInput } fieldPlaceholder="Enter Project Identifier" />
-                        <Field name="projectName" component={ this.renderInput } fieldPlaceholder=" Project Name" />
-                        <Field name="description" component={ this.renderTextArea } fieldPlaceholder=" Project Description" />
-                        <Field name="startDate" component={ this.renderDate } fieldPlaceholder="Project Start Date" />
-                        <Field name="endDate" component={ this.renderDate } fieldPlaceholder="Project End Date" />
-                        <Button positive type='submit' icon="plus" content={ this.props.formName } style={ { display: 'block', margin: '15px 0 15px 140px' } } ></Button>
-                    </Form.Group>
+                <Form onSubmit={ handleSubmit(this.onFormSubmit) } >
+                    {/* <Form.Group grouped style={ { marginLeft: '33%' } }> */ }
+                    <Field name="projectIdentifier" component={ this.renderInput } fieldPlaceholder="Enter Project Identifier" />
+                    <Field name="projectName" component={ this.renderInput } fieldPlaceholder=" Project Name" />
+                    <Field name="description" component={ this.renderTextArea } fieldPlaceholder=" Project Description" />
+                    <Field name="startDate" component={ this.renderDate } fieldPlaceholder="Project Start Date" />
+                    <Field name="endDate" component={ this.renderDate } fieldPlaceholder="Project End Date" />
+                    <Button positive type='submit' icon="plus" content={ this.props.formName } style={ { width: '30%', margin: '0 150px 50px' } } ></Button>
+                    {/* </Form.Group> */ }
                 </Form>
             </>
         )

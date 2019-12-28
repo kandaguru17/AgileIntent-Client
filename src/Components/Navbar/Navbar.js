@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { logOut } from '../../Actions/SecurityActions'
-
-
+import { logOut } from '../../Actions/SecurityActions';
 
 class Navbar extends Component {
 
@@ -19,7 +17,7 @@ class Navbar extends Component {
 
     renderMenu = () => {
         const { active } = this.state;
-        const { isAuthenticated } = this.props.auth;
+        const { isAuthenticated, user } = this.props.auth;
         return isAuthenticated ?
             <>
                 <Menu.Item content="Dashboard"
@@ -28,8 +26,12 @@ class Navbar extends Component {
                     onClick={ this.handleClick }
                     active={ active === 'dashboard' }
                 />
+
+                <Menu.Item position="right"
+                    as={ Link } to=""
+                    name={ `${user.firstName} ${user.lastName}` } >
+                </Menu.Item>
                 <Menu.Item content="Log Out"
-                    position="right"
                     name="logOut"
                     as={ Link } to="/auth"
                     onClick={ this.handleClick }
@@ -74,18 +76,3 @@ export default connect(mapStateToProps, { logOut })(Navbar);
 
 
 
-{/* 
-                    <Menu.Item content="Sign Up"
-                        position="right"
-                        name="signUp"
-                        as={ Link } to="/auth"
-                        onClick={ this.handleClick }
-                        active={ active === 'signUp' }
-                    />
-
-                    <Menu.Item content="Login"
-                        name="signIn"
-                        as={ Link } to="/auth"
-                        onClick={ this.handleClick }
-                        active={ active === 'signIn' }
-                    /> */}

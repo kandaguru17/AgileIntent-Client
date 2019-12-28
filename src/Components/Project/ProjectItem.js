@@ -29,13 +29,9 @@ class ProjectItem extends Component {
                     <Divider hidden />
 
                     <Button.Group floated="right">
-                        <Button as={ Link } to={ `/project/${project.projectIdentifier}/projectTask` } positive>View Project Board</Button>
-                        <Button.Or />
-                        <Button color="teal" as={ Link } to={ `/project/edit/${project.projectIdentifier}` }>Update Project</Button>
-                        <Button.Or />
-
-                        <Button as={ Link } to={ `/project/delete/${project.projectIdentifier}` } negative>Delete Project</Button>
-
+                        <Button as={ Link } to={ `/project/${project.projectIdentifier}/projectTask` } basic color="green"  style={{marginRight:'2px'}}>View Project Board</Button>
+                        <Button color="blue" as={ Link } to={ `/project/edit/${project.projectIdentifier}` } basic  style={{marginRight:'2px'}}>Update Project</Button>
+                        <Button as={ Link } to={ `/project/delete/${project.projectIdentifier}` } negative basic >Delete Project</Button>
                     </Button.Group>
                 </Card.Content>
 

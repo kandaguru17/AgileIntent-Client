@@ -3,6 +3,7 @@ import ProjectTaskForm from './ProjectTaskForm';
 import { connect } from 'react-redux';
 import { createProjectTask } from '../../Actions/ProjectTaskActions'
 import { getAllProjects } from '../../Actions/ProjectActions'
+import history from '../../history';
 
 class CreateProjectTask extends Component {
 
@@ -16,10 +17,19 @@ class CreateProjectTask extends Component {
         this.props.createProjectTask(projectId, formValues)
     }
 
+    state = { open: true }
+
+    onDismiss = () => {
+        const { projectId } = this.props.match.params;
+        this.setState({ open: false });
+        history.push(`/project/${projectId}/projectTask`);
+    }
+
+
     render() {
         return (
             <div style={ { position: 'relative', top: 100, left: '27%', width: '90%' } }>
-                <ProjectTaskForm onFormSubmit={ this.onFormSubmit } />
+                <ProjectTaskForm onFormSubmit={ this.onFormSubmit } formName="Create Project Task" buttonName="Create Task" />
             </div>
         )
     }

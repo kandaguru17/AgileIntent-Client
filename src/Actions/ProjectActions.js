@@ -18,6 +18,7 @@ export const getAllProjects = () => async (dispatch) => {
     try {
         const res = await axios.get(`${ROOT_URL}/project`, { headers });
         dispatch({ type: GET_PROJECTS, payload: res.data });
+        dispatch({ type: 'ERROR', payload: {} });
 
     } catch (err) {
 
@@ -35,6 +36,7 @@ export const createProject = (formValues) => {
         try {
             const res = await axios.post(`${ROOT_URL}/project`, { ...formValues }, { headers });
             dispatch({ type: CREATE_PROJECT, payload: res.data });
+            dispatch({ type: 'ERROR', payload: {} });
             history.push('/dashboard');
 
         } catch (err) {
@@ -53,6 +55,7 @@ export const getProject = (id) => async (dispatch) => {
     try {
         const res = await axios.get(`${ROOT_URL}/project/${id}`, { headers });
         dispatch({ type: GET_PROJECT, payload: res.data });
+        dispatch({ type: 'ERROR', payload: {} });
     } catch (err) {
 
         console.log(err);
@@ -68,6 +71,7 @@ export const updateProject = (id, formValues) => async (dispatch) => {
     try {
         const res = await axios.put(`${ROOT_URL}/project/${id}`, formValues, { headers });
         dispatch({ type: 'UPDATE_PROJECT', payload: res.data });
+        dispatch({ type: 'ERROR', payload: {} });
         history.push('/dashboard');
 
     } catch (err) {
@@ -87,6 +91,7 @@ export const deleteProject = (id) => async (dispatch) => {
 
         await axios.delete(`${ROOT_URL}/project/${id}`, { headers });
         dispatch({ type: DELETE_PROJECT, payload: id });
+        dispatch({ type: 'ERROR', payload: {} });
         history.push('/dashboard');
 
     } catch (err) {

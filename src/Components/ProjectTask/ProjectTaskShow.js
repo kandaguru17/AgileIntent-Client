@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Header, Icon, Modal, Image, Segment, Dimmer, Loader } from 'semantic-ui-react';
+import { Button, Header, Dropdown, Modal, Image, Segment, Dimmer, Loader, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getProjectTask } from '../../Actions/ProjectTaskActions';
 import history from '../../history';
-
-
-const PRIORITY_OPTIONS = [
-    { key: '1', value: '1', text: '1-Critical' },
-    { key: '2', value: '2', text: '2-High' },
-    { key: '3', value: '3', text: '3-Medium' },
-    { key: '4', value: '4', text: '4-Low' }
-]
+import { Link } from 'react-router-dom';
+import { PRIORITY_OPTIONS } from './ProjectTaskOptions';
 
 class ProjectTaskShow extends Component {
 
@@ -43,34 +37,50 @@ class ProjectTaskShow extends Component {
                     <Dimmer active inverted>
                         <Loader size='large'>Loading</Loader>
                     </Dimmer>
-                    <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                    <Image
+                        src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
                 </Segment>
             )
 
-        const { projectTaskSequence, summary, priority, status, createdAt, updatedAt, acceptanceCriteria } = this.props.projectTask;
+        const { projectTaskSequence, summary, priority, status, createdAt, updatedAt, acceptanceCriteria, projectIdentifier, dueDate, issueType } = this.props.projectTask;
 
         return (
             <>
-                <Modal open={ this.state.open } >
+                <Modal open={ this.state.open } onClose={ this.onDismiss }>
                     <Modal.Header>{ `${projectTaskSequence} - ${summary}` } </Modal.Header>
                     <Modal.Content scrolling>
                         <Modal.Description>
-                            <Header>Acceptance Criteria :</Header>
-                            <p>{ acceptanceCriteria }</p>
-                            <Header>Priority :</Header>
-                            <p>{ this.renderPriority(priority) }</p>
+                            <Container textAlign="justified" >
+                                <Header>Acceptance Criteria :</Header>
+                                <p style={ { maxWidth: '100%', whiteSpace: 'pre-wrap' } }>
+                                    { acceptanceCriteria === null ? '' : acceptanceCriteria }
+                                </p>
+                            </Container>
+                            <Header>Issue Type :</Header>
+                            <p> { issueType } </p>
                             <Header>Status :</Header>
                             <p>{ status }</p>
-                            <Header>Created At :</Header>
+                            <Header>Priority :</Header>
+                            <p>{ this.renderPriority(priority) }</p>
+                            <Header>Due Date :</Header>
+                            <p>{ dueDate }</p>
+                            <Header>Created On :</Header>
                             <p>{ createdAt }</p>
-                            <Header>Updated At :</Header>
+                            <Header>Last Updated :</Header>
                             <p>{ updatedAt === null ? 'No Updates Yet' : updatedAt }</p>
                         </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button primary onClick={ this.onDismiss }>
-                            Back to Project Tasks
-                        </Button>
+                        <Button.Group color='blue'>
+                            <Button as={ Link } to={ `/project/${projectIdentifier}/projectTask` }>Back to Project Tasks</Button>
+                            <Dropdown className='button icon' >
+                                <Dropdown.Menu>
+                                    <Dropdown.Item as={ Link } to={ `/project/${projectIdentifier}/${projectTaskSequence}/details` } text="View Details" />
+                                    <Dropdown.Item as={ Link } to={ `/project/${projectIdentifier}/projectTask/edit/${projectTaskSequence}` } text="Edit" />
+                                    <Dropdown.Item as={ Link } to={ `/project/${projectIdentifier}/projectTask/delete/${projectTaskSequence}` } text="Delete" />
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Button.Group>
                     </Modal.Actions>
                 </Modal>
             </>
@@ -83,26 +93,3 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(mapStateToProps, { getProjectTask })(ProjectTaskShow);
-
-
-
-{/* <TransitionablePortal onClose={ this.props.handleClose } open={ open }>
-<Segment style={ {
-    position: "relative",
-    bottom: "100%",
-    width: "60%",
-    margin: "0 auto",
-    height: "100%",
-    zIndex: '1000px'
-} }>
-
-    <Header>{ projectIdentifier }</Header>
-    <Header>{ projectTaskSequence }</Header>
-    <p>{ summary }</p>
-    <p>{ acceptanceCriteria }</p>
-    <p>{ priority }</p>
-    <p>{ status }</p>
-    <p>{ createdAt }</p>
-    <p>{ updatedAt }</p>
-</Segment>
-</TransitionablePortal> */}

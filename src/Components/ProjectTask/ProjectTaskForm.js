@@ -1,19 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { Form, Button, Dropdown } from 'semantic-ui-react';
-
-
-const STATUS_OPTIONS = [{ key: 'toDo', value: 'TO DO', text: 'TO DO' },
-{ key: 'inProgress', value: 'IN PROGRESS', text: 'IN PROGRESS' },
-{ key: 'done', value: 'DONE', text: 'DONE' },
-]
-
-const PRIORITY_OPTIONS = [
-    { key: '1', value: '1', text: '1-Critical' },
-    { key: '2', value: '2', text: '2-High' },
-    { key: '3', value: '3', text: '3-Medium' },
-    { key: '4', value: '4', text: '4-Low' }
-]
+import { Form, Button, Header, Icon } from 'semantic-ui-react';
+import { STATUS_OPTIONS, PRIORITY_OPTIONS, ISSUETYPE_OPTIONS } from './ProjectTaskOptions';
 
 class ProjectTaskForm extends Component {
 
@@ -61,16 +49,23 @@ class ProjectTaskForm extends Component {
 
     render() {
         const { handleSubmit } = this.props;
-        console.log(this.props)
+        console.log(this.props.initialValues);
         return (
-            <Form onSubmit={ handleSubmit(this.onFormSubmit) }>
-                <Field name="summary" type="text" component={ this.renderInput } placeholder="Task Summary" />
-                <Field name="acceptanceCriteria" type="textArea" component={ this.renderInput } placeholder="Acceptance Criteria" />
-                <Field name="status" type="dropDown" options={ STATUS_OPTIONS } component={ this.renderInput } placeholder="Status" />
-                <Field name="priority" type="dropDown" options={ PRIORITY_OPTIONS } component={ this.renderInput } placeholder="Priority" />
-                <Field name="dueDate" type="date" component={ this.renderInput } placeholder="DueDate" />
-                <Button type="submit" positive content="Create Task" />
-            </Form>
+            <>
+                <Header as='h2' icon style={ { marginLeft: '200px' } }>
+                    <Icon name='settings' />
+                    { this.props.formName }
+                </Header>
+                <Form onSubmit={ handleSubmit(this.onFormSubmit) }>
+                    <Field name="summary" type="text" component={ this.renderInput } placeholder="Task Summary" />
+                    <Field name="acceptanceCriteria" type="textArea" component={ this.renderInput } placeholder="Acceptance Criteria" style={ { whiteSpace: 'pre-wrap' } } />
+                    <Field name="status" type="dropDown" options={ STATUS_OPTIONS } component={ this.renderInput } placeholder="Status" />
+                    <Field name="priority" type="dropDown" options={ PRIORITY_OPTIONS } component={ this.renderInput } placeholder="Priority" />
+                    <Field name="issueType" type="dropDown" options={ ISSUETYPE_OPTIONS } component={ this.renderInput } placeholder="issueType" />
+                    <Field name="dueDate" type="date" component={ this.renderInput } placeholder="DueDate" />
+                    <Button type="submit" positive content={ this.props.buttonName } style={ { width: '30%', margin: '0 150px 50px' } } />
+                </Form>
+            </>
         )
     }
 }

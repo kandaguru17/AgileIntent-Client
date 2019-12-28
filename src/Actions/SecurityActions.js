@@ -36,6 +36,7 @@ export const logOut = () => async dispatch => {
         localStorage.removeItem('token');
         setHeaders(null);
         dispatch({ type: LOG_OUT, payload: { isAuthenticated: false, user: {} } });
+        dispatch({ type: 'ERROR', payload: {} });
         history.push('/auth');
     } catch (err) {
         console.log(err);
@@ -52,7 +53,8 @@ export const registerUser = (formValues) => async dispatch => {
     try {
         await axios.post(`${ROOT_URL}/users/register`, formValues, { headers });
         dispatch({ type: REGISTER, payload: {} });
-        history.push('/auth');
+        dispatch({ type: 'ERROR', payload: {} });
+        history.push('/success');
     } catch (err) {
         console.log(err);
         if (err.response) return dispatch({ type: 'ERROR', payload: err.response.data })

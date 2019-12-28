@@ -8,11 +8,10 @@ class ModalComponent extends Component {
 
         return (
             <Modal open={ this.props.modalOpen } basic size='small'>
-                <Header icon='archive' content='Archive Old Messages' />
+                <Header icon='delete' content='Delete' />
                 <Modal.Content>
                     <p>
-                        Your inbox is getting full, would you like us to enable automatic
-                        archiving of old messages?
+                        Are you sure you want to Delete this item?
                     </p>
                 </Modal.Content>
                 <Modal.Actions>

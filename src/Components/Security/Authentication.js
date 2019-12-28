@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { authenticate, registerUser } from '../../Actions/SecurityActions'
 import { Divider, Grid, Segment, Image, Message } from 'semantic-ui-react';
 import RegistrationForm from './RegistrationForm'
-import '../../styles/Authentication.css';
 import myLogo from '../Navbar/MyLogo.png';
 import history from '../../history'
 
@@ -15,6 +14,7 @@ class Authentication extends Component {
     }
 
     registerUser = (formValues) => {
+        console.log(formValues)
         this.props.registerUser(formValues)
     }
 
@@ -22,17 +22,17 @@ class Authentication extends Component {
         const { error } = this.props
         const errArr = Object.entries(error);
         console.log(errArr);
-        if(errArr.length > 0){
-        const newErrArr=errArr.map((it,i)=>{
+        if (errArr.length > 0) {
+            const newErrArr = errArr.map((it, i) => {
                 return (`${it[0]} : ${it[1]}`);
             })
-        return <Message
-            negative
-            header='There was some errors with your submission'
-            list={ newErrArr }
-            style={ { position: 'relative', top: 50, width: '40%', margin: '0 auto' } } ></Message>
-        }    
-}
+            return <Message
+                negative
+                header='There was some errors with your submission'
+                list={ newErrArr }
+                style={ { position: 'relative', top: 50, width: '40%', margin: '0 auto' } } ></Message>
+        }
+    }
 
     checkAlreadyLoggedIn = () => {
         const { user } = this.props.auth;
@@ -43,7 +43,7 @@ class Authentication extends Component {
 
     render() {
         return (
-            <> 
+            <>
                 { this.checkAlreadyLoggedIn() }
                 { this.checkValidationErrors() }
                 <Image size="medium" src={ myLogo } centered />

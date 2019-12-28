@@ -20,7 +20,6 @@ export const projectReducer = (state = {}, action) => {
             return { ...state, [action.payload.projectIdentifier]: action.payload }
 
         case UPDATE_PROJECT:
-            console.log(action.payload)
             return { ...state, [action.payload.projectIdentifier]: action.payload }
 
         case DELETE_PROJECT:

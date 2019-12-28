@@ -27,9 +27,9 @@ class RegistrationForm extends Component {
                     <Icon size="tiny" name='user' />
                     Sign Up
                 </Header>
+                <Field name="username" placeholder="User Name" component={ this.renderInput } width={ 6 }></Field>
                 <Field name="firstName" placeholder="First Name" component={ this.renderInput } width={ 6 }></Field>
                 <Field name="lastName" placeholder="Last Name" component={ this.renderInput } width={ 6 }></Field>
-                <Field name="username" placeholder="User Name" component={ this.renderInput } width={ 6 }></Field>
                 <Field name="password" placeholder="Password" component={ this.renderInput } type="password" width={ 6 }></Field>
                 <Field name="confirmPassword" placeholder="Confirm Password" component={ this.renderInput } type="password" width={ 6 }></Field>
                 <Button positive type="submit" content="Register" />

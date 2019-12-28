@@ -1,4 +1,4 @@
-import { LOGIN ,LOG_OUT} from '../Actions/types'
+import { LOGIN, LOG_OUT } from '../Actions/types'
 
 const initialState = {
     isAuthenticated: false,
@@ -11,7 +11,7 @@ export const securityReducer = (state = initialState, action) => {
             const { isAuthenticated, user } = action.payload;
             return { ...state, isAuthenticated, user }
         case LOG_OUT:
-            return {...state,isAuthenticated:false,user:null}
+            return { ...state, isAuthenticated: false, user: null }
         default:
             return state;
     }

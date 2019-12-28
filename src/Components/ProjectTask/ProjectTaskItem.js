@@ -1,33 +1,38 @@
 import React, { Component } from 'react';
-import { Card, Icon } from 'semantic-ui-react';
+import { Card, Icon, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import ProjectTaskShow from './ProjectTaskShow';
+import { PRIORITY_OPTIONS } from './ProjectTaskOptions';
+import '../../styles/projectTaskShow.css';
+
 
 class ProjectTaskItem extends Component {
 
-    state = { open: false }
-    handleClick = () => this.setState({ open: true })
-    handleClose = () => this.setState({ open: false })
-    
-
+    renderPriority = (priority) => {
+        return PRIORITY_OPTIONS.find(it => {
+            console.log(it.text)
+            return parseInt(it.key) === priority;
+        }).text
+    }
 
     render() {
-        const { projectTaskSequence, summary, priority, status, createdAt, updatedAt, acceptanceCriteria, projectIdentifier } = this.props;
+        const { projectTaskSequence, summary, priority, status, createdAt, updatedAt, acceptanceCriteria, projectIdentifier, issueType } = this.props;
         return (
             <>
-
-                <Card style={ { width: '32%' } }>
+                <Card style={ { width: '32.29%' } }>
                     <Card.Content>
-                        <Card.Header as={ Link }
-                            to={ `/project/${projectIdentifier}/projectTask/${projectTaskSequence}` }
-                            onClick={ this.handleClick }
-                            style={{width:'80px'}}>
-                            { projectTaskSequence }
-                        </Card.Header>
-                        <Card.Description><strong>Priority : </strong>{ priority }</Card.Description>
+                        <span>
+                            <Header as={ Link }
+                                to={ `/project/${projectIdentifier}/projectTask/${projectTaskSequence}` }
+                                onClick={ this.handleClick }
+                                style={ { width: '80px' } }
+                                className='header-link'>
+                                { `${projectTaskSequence} - ${summary}` }
+                            </Header>
+                        </span>
+                        <Card.Description><strong>Type : </strong>{ issueType }</Card.Description>
+                        <Card.Description><strong>Priority : </strong>{ this.renderPriority(priority) }</Card.Description>
                         <Card.Description><strong>Status : </strong>{ status }</Card.Description>
-                        <Card.Description><strong>Task Summary: </strong><br></br>{ summary }</Card.Description>
-                        <Card.Description><strong>Acceptance Criteria: </strong><br></br>{ `${acceptanceCriteria.substring(0, 50)}...` }</Card.Description>
+                        <Card.Description ><strong>Acceptance Criteria: </strong><br></br>{ acceptanceCriteria === null ? '' : `${acceptanceCriteria.substring(0, 150)}...` }</Card.Description>
                     </Card.Content>
                     <Card.Content extra>
                         <Icon name='calendar' /> Created On : { createdAt }

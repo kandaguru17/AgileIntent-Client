@@ -40,9 +40,9 @@ class EditProject extends Component {
 
 
         return (
-            <>
-                <ProjectForm onSubmit={ this.onSubmit } initialValues={ project } formName={ `Update Project "${project.projectName}"` } />
-            </>
+            <div style={ { position: 'relative', top: 100, left: '27%', width: '90%' } }>
+                <ProjectForm onSubmit={ this.onSubmit } initialValues={ project } formName={ `Update Project` } />
+            </div>
         )
     }
 }
