@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Icon, Grid, Card, Header, Popup } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Icon, Grid, Card, Header } from 'semantic-ui-react';
+
 import store from '../../Reducers';
 import { downloadAttachment, deleteAttachment } from '../../Actions/AttachmentActions';
 
@@ -38,7 +38,7 @@ export default class AtttachmentItem extends Component {
                         <Icon corner name="download" link onClick={ this.downloadAttachment } />
                     </Card.Content>
                 </Card>
-            </Grid.Column >
+            </Grid.Column>
 
 
         )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Header } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import { reduxForm, Field } from 'redux-form';
 import './comments.css';
 

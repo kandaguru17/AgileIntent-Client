@@ -21,7 +21,7 @@ class AttachmentList extends Component {
 
         const { attachments } = this.props;
         if (attachments.length === 0)
-            return 'no attachments added';
+            return 'No Attachments added';
 
         return (
             <>
@@ -29,7 +29,6 @@ class AttachmentList extends Component {
                     <Grid.Row columns={ 5 } >
                         { this.renderAttachments() }
                     </Grid.Row>
-
                 </Grid>
             </>
         )

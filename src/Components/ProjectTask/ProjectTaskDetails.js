@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Segment, Dimmer, Container, Header, Image, Loader, Button, Dropdown, Divider, Icon, Tab } from 'semantic-ui-react';
+import { Segment, Dimmer, Container, Header, Image, Loader, Button, Dropdown, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 
@@ -11,7 +11,7 @@ import { PRIORITY_OPTIONS } from './ProjectTaskOptions';
 import CommentAdd from '../Comments/CommentAdd';
 import CommentList from '../Comments/CommentList';
 import AttachmentList from '../Attachments/AttachmentList';
-import ErrorComponent from '../Error/ErrorComponent'
+
 
 
 class ProjectTaskDetails extends Component {
@@ -45,9 +45,8 @@ class ProjectTaskDetails extends Component {
 
         return (
             <>
-
-                <Segment style={ { width: '90%', margin: '100px auto 100px' } }>
-                    <Container textAlign="justified" >
+                <Segment style={ { width: '90%', margin: '100px auto' } }>
+                    <Container textAlign="justified" style={ { width: '85%' } }>
                         <Header as="h1">{ `${projectTaskSequence} : ${summary}` }</Header>
                         <Header>Acceptance Criteria :</Header>
                         <p style={ { maxWidth: '100%', whiteSpace: 'pre-wrap' } }>
@@ -84,12 +83,9 @@ class ProjectTaskDetails extends Component {
                 </Header>
                 </Container>
 
-
-                <Segment style={ { width: '90%', margin: '10px auto', height: '300px', overflow: 'auto' } }>
+                <Segment style={ { width: '90%', margin: '10px auto', maxHeight: '300px', overflow: 'auto' } }>
                     <DropZoneComponent { ...this.props } />
                     <AttachmentList { ...this.props } />
-
-
                 </Segment>
 
 
@@ -98,7 +94,8 @@ class ProjectTaskDetails extends Component {
                         Comments
                 </Header>
                 </Container>
-                <Segment style={ { width: '90%', margin: '10px auto', maxHeight: '400px', overflow: 'auto' } }>
+
+                <Segment style={ { maxWidth: '90%', margin: '10px auto', maxHeight: '400px', overflow: 'auto' } }>
                     <CommentList { ...this.props } />
                 </Segment>
                 <CommentAdd { ...this.props } />
@@ -110,4 +107,5 @@ class ProjectTaskDetails extends Component {
 const mapStateToProps = (state, ownProps) => {
     return { projectTask: state.projectTasks[ownProps.match.params.projectTaskId] }
 }
+
 export default connect(mapStateToProps, { getProjectTask })(ProjectTaskDetails)

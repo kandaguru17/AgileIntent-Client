@@ -52,8 +52,8 @@ class ProjectTaskForm extends Component {
         console.log(this.props.initialValues);
         return (
             <>
-                <Header as='h2' icon style={ { marginLeft: '200px' } }>
-                    <Icon name='settings' />
+                 <Header as='h2' icon style={ { marginLeft:' 300px' } }>
+                    <Icon name={this.props.icon} />
                     { this.props.formName }
                 </Header>
                 <Form onSubmit={ handleSubmit(this.onFormSubmit) }>

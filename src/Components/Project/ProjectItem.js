@@ -12,8 +12,10 @@ class ProjectItem extends Component {
         return (
             <Card centered style={ { width: '80%', marginTop: '15px' } }>
                 <Card.Content>
-                    <Card.Header>{ project.projectIdentifier }</Card.Header>
+                    <Card.Header >{ project.projectIdentifier }</Card.Header>
+                    <Card.Description as={ Link } to={ `/project/${project.projectIdentifier}/config` } style={ { color: '#4183c4' } }>project metrics</Card.Description>
                 </Card.Content>
+
                 <Card.Content>
 
                     <Card.Header>{ project.projectName }</Card.Header>
@@ -29,8 +31,8 @@ class ProjectItem extends Component {
                     <Divider hidden />
 
                     <Button.Group floated="right">
-                        <Button as={ Link } to={ `/project/${project.projectIdentifier}/projectTask` } basic color="green"  style={{marginRight:'2px'}}>View Project Board</Button>
-                        <Button color="blue" as={ Link } to={ `/project/edit/${project.projectIdentifier}` } basic  style={{marginRight:'2px'}}>Update Project</Button>
+                        <Button as={ Link } to={ `/project/${project.projectIdentifier}/projectTask` } basic color="green" style={ { marginRight: '2px' } }>View Project Board</Button>
+                        <Button color="blue" as={ Link } to={ `/project/edit/${project.projectIdentifier}` } basic style={ { marginRight: '2px' } }>Update Project</Button>
                         <Button as={ Link } to={ `/project/delete/${project.projectIdentifier}` } negative basic >Delete Project</Button>
                     </Button.Group>
                 </Card.Content>

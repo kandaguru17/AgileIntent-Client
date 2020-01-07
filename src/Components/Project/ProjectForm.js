@@ -14,7 +14,7 @@ class ProjectForm extends Component {
         let { touched, error } = fieldProps.meta;
         const { fieldPlaceholder } = fieldProps
         error = (touched && error) ? { content: error, pointing: 'below' } : false
-        return (<Form.Input error={ error } autoComplete="off" width={ 8 } placeholder={ fieldPlaceholder } { ...fieldProps.input } />);
+        return (<Form.Input error={ error } autoComplete="off" width={ 8 } placeholder={ fieldPlaceholder } { ...fieldProps.input } disabled={fieldProps.disabled} />);
     }
 
     renderTextArea = (fieldProps) => {
@@ -42,16 +42,20 @@ class ProjectForm extends Component {
     }
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, formName } = this.props;
         return (
             <>
                 <Header as='h2' icon style={ { marginLeft: '200px' } }>
                     <Icon name='settings' />
-                    { this.props.formName }
+                    { formName }
                 </Header>
                 <Form onSubmit={ handleSubmit(this.onFormSubmit) } >
                     {/* <Form.Group grouped style={ { marginLeft: '33%' } }> */ }
-                    <Field name="projectIdentifier" component={ this.renderInput } fieldPlaceholder="Enter Project Identifier" />
+                    <Field name="projectIdentifier"
+                        component={ this.renderInput }
+                        fieldPlaceholder="Enter Project Identifier"
+                        disabled={ formName==='Update Project'?true :false }
+                    />
                     <Field name="projectName" component={ this.renderInput } fieldPlaceholder=" Project Name" />
                     <Field name="description" component={ this.renderTextArea } fieldPlaceholder=" Project Description" />
                     <Field name="startDate" component={ this.renderDate } fieldPlaceholder="Project Start Date" />

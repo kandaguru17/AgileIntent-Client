@@ -20,8 +20,8 @@ import ProjectTaskDelete from './ProjectTask/ProjectTaskDelete';
 import ProjectTaskEdit from './ProjectTask/ProjectTaskEdit';
 import SampleComponent from './Security/SampleComponent';
 import ProjectTaskDetails from './ProjectTask/ProjectTaskDetails';
-import { Reponsive, Responsive } from 'semantic-ui-react';
 import ErrorComponent from './Error/ErrorComponent'
+import ProjectMetrics from './Project/ProjectMetrics/ProjectMetrics';
 
 const token = localStorage.token
 if (token) {
@@ -44,8 +44,6 @@ class App extends Component {
 
 
   render() {
-
-
 
     return (
       <>
@@ -72,6 +70,8 @@ class App extends Component {
           <SecuredRoute exact path='/project/:projectId/projectTask/:projectTaskId' component={ ProjectTaskDetails } />
           <SecuredRoute exact path='/project/:projectId/projectTask/delete/:projectTaskId/' component={ ProjectTaskDelete } />
           <SecuredRoute exact path='/project/:projectId/projectTask/edit/:projectTaskId/' component={ ProjectTaskEdit } />
+
+          <SecuredRoute exact path='/project/:projectId/config' component={ ProjectMetrics } />
 
         </Switch>
       </>

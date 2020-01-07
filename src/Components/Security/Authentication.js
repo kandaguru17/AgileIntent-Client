@@ -14,7 +14,6 @@ class Authentication extends Component {
     }
 
     registerUser = (formValues) => {
-        console.log(formValues)
         this.props.registerUser(formValues)
     }
 
@@ -44,8 +43,8 @@ class Authentication extends Component {
     render() {
         return (
             <>
-                { this.checkAlreadyLoggedIn() }
-                { this.checkValidationErrors() }
+                {/* { this.checkAlreadyLoggedIn() } */ }
+                {/* { this.checkValidationErrors() } */ }
                 <Image size="medium" src={ myLogo } centered />
                 <Segment placeholder style={ { width: '90%', margin: '0 auto', marginTop: '5px' } }>
                     <Grid columns={ 2 } relaxed='very' stackable>

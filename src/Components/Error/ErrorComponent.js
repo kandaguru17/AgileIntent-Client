@@ -8,7 +8,7 @@ class ErrorComponent extends Component {
         const { error } = this.props;
 
         if (Object.values(error).length !== 0)
-            return <Message style={ { margin: '45px auto ', width: '90%' } } negative content={ Object.values(error)[0] } />
+            return <Message style={ { position:'absolute',margin: '45px 90px auto ', width: '90%' } } negative content={ Object.values(error)[0] } />
 
         return (<React.Fragment />)
     }

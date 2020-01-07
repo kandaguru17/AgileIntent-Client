@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getAllComments } from '../../Actions/CommentActions';
 import { connect } from 'react-redux';
-import { Comment, Segment } from 'semantic-ui-react';
+import { Comment } from 'semantic-ui-react';
 import CommentItem from './CommentItem';
 
 class CommentList extends Component {
@@ -14,12 +14,12 @@ class CommentList extends Component {
     renderComments = () => {
         const { comments } = this.props;
         return comments.length !== 0 ?
-            
-                <Comment.Group>
-                    { comments.map(comment => <CommentItem comment={ comment } key={ comment.id } { ...this.props } />) }
-                </Comment.Group>
-           :
-            <h5 style={ { width: '90%', margin: '10px auto' } }>No Comments yet</h5>
+
+            <Comment.Group>
+                { comments.map(comment => <CommentItem comment={ comment } key={ comment.id } { ...this.props } />) }
+            </Comment.Group>
+            :
+            <>No Comments yet</>
 
     }
 

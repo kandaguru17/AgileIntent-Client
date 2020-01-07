@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone';
-import { Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { uploadAttachment } from '../../Actions/AttachmentActions'
 

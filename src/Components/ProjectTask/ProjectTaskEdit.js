@@ -34,9 +34,9 @@ class ProjectTaskEdit extends Component {
             <>
                 <div>
                     <Button content="Back To Project Tasks" />
-                    <div style={ { position: 'relative', top: 100, left: '27%', width: '90%' } }>
-                        <ProjectTaskForm initialValues={ { ...projectTask, priority: found } } onFormSubmit={ this.onFormSubmit } formName="Edit Task" buttonName="Edit Task" />
-                    </div>
+                    <div style={ { position: 'fixed', top: '100px', left: '25%', width: '90%' } }>
+                        <ProjectTaskForm initialValues={ { ...projectTask, priority: found } } onFormSubmit={ this.onFormSubmit } formName="Edit Task" buttonName="Edit Task" icon="edit" />
+                    </div>  
                 </div>
             </>
         )

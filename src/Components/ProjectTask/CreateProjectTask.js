@@ -28,8 +28,8 @@ class CreateProjectTask extends Component {
 
     render() {
         return (
-            <div style={ { position: 'relative', top: 100, left: '27%', width: '90%' } }>
-                <ProjectTaskForm onFormSubmit={ this.onFormSubmit } formName="Create Project Task" buttonName="Create Task" />
+            <div style={ { position: 'fixed', top: '100px', left: '25%', width: '90%' } }>
+                <ProjectTaskForm onFormSubmit={ this.onFormSubmit } formName="Create Project Task" buttonName="Create Task" icon="tasks"/>
             </div>
         )
     }

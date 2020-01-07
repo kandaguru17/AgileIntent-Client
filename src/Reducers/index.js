@@ -6,6 +6,7 @@ import { projectTaskReducer } from './ProjectTaskReducer';
 import { securityReducer } from './SecurityReducer';
 import { commentReducer } from './CommentReducer';
 import { attachmentReducer } from './AttachmentReducer';
+import { projectMemberReducer } from './ProjectMemberReducer';
 import { LOG_OUT } from '../Actions/types';
 
 
@@ -16,7 +17,8 @@ const reducers = combineReducers({
     comments: commentReducer,
     attachments: attachmentReducer,
     error: errorReducer,
-    auth: securityReducer
+    auth: securityReducer,
+    projectMembers: projectMemberReducer
 });
 
 const rootReducer = (state, action) => {

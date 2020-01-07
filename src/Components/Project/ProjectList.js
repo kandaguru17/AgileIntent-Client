@@ -4,7 +4,7 @@ import { Button, Message } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAllProjects } from '../../Actions/ProjectActions'
-import ErrorComponent from '../Error/ErrorComponent';
+
 
 
 class ProjectList extends Component {

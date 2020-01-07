@@ -36,12 +36,9 @@ class EditProject extends Component {
             )
         }
 
-
-
-
         return (
             <div style={ { position: 'relative', top: 100, left: '27%', width: '90%' } }>
-                <ProjectForm onSubmit={ this.onSubmit } initialValues={ project } formName={ `Update Project` } />
+                <ProjectForm onSubmit={ this.onSubmit } initialValues={ project } formName={ `Update Project` }  />
             </div>
         )
     }
