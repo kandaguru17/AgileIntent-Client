@@ -93,3 +93,23 @@ export const updateProjectTask = (projectId, projectTaskId, formValues) => async
     }
 
 }
+
+
+
+export const getAssignedProjectTasks = () => async dispatch => {
+    try {
+
+        const res = await axios.get(`${ROOT_URL}/currentUser`, { headers });
+        dispatch({ type: GET_PROJECT_TASKS, payload: res.data });
+        dispatch({ type: 'ERROR', payload: {} });
+
+    } catch (err) {
+        console.log(err);
+        if (err.response) return dispatch({ type: 'ERROR', payload: err.response.data })
+        if (err.request) return dispatch({ type: 'ERROR', payload: err.request })
+        if (err.message) return dispatch({ type: 'ERROR', payload: err.message })
+        return dispatch({ type: 'ERROR', payload: err.config })
+    }
+
+}
+

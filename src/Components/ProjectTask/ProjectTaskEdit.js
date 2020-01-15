@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ProjectTaskForm from './ProjectTaskForm'
 import { connect } from 'react-redux';
 import { getProjectTask, updateProjectTask } from '../../Actions/ProjectTaskActions';
-import { Button } from 'semantic-ui-react';
+import { Icon, Header } from 'semantic-ui-react';
 import { PRIORITY_OPTIONS } from './ProjectTaskOptions';
 
 
@@ -32,12 +32,15 @@ class ProjectTaskEdit extends Component {
 
         return (
             <>
-                <div>
-                    <Button content="Back To Project Tasks" />
-                    <div style={ { position: 'fixed', top: '100px', left: '25%', width: '90%' } }>
-                        <ProjectTaskForm initialValues={ { ...projectTask, priority: found } } onFormSubmit={ this.onFormSubmit } formName="Edit Task" buttonName="Edit Task" icon="edit" />
-                    </div>  
+                <Header as='h2' icon style={ { position: 'relative', top: '100px', left: '40%' } }>
+                    <Icon name="edit" />
+                    Edit Project Task
+             </Header>
+
+                <div style={ { position: 'relative', top: '100px', left: '25%' } }>
+                    <ProjectTaskForm initialValues={ { ...projectTask, priority: found } } onFormSubmit={ this.onFormSubmit } buttonName="Edit Task" cancelLink={ `/project/${projectTask.projectIdentifier}/projectTask/${projectTask.projectTaskSequence}` } />
                 </div>
+
             </>
         )
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import {Header,Icon} from 'semantic-ui-react';
 import ProjectForm from './ProjectForm';
 import { createProject } from '../../Actions/ProjectActions'
 
@@ -14,10 +14,16 @@ class CreateProject extends Component {
     render() {
 
         return (
-            <div style={ { position: 'relative', top: 100, left: '27%', width: '90%' } }>
-                <ProjectForm onSubmit={ this.onSubmit } formName="Create New Project" />
-            </div>
 
+            <>
+              <Header as='h2' icon style={ { position: 'relative', top: '100px', left: '0', width: '90%' } }>
+                    <Icon name="tasks" />
+                    Create Project Task
+            </Header>
+            <div style={ { position: 'relative', top: 100, left: '27%', width: '90%' } }>
+                <ProjectForm onSubmit={ this.onSubmit } formName="Create New Project" cancelLink={`/dashboard`} buttonName="Create Project"/>
+            </div>
+</>
 
         )
     }

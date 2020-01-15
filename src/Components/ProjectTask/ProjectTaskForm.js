@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { Form, Button, Header, Icon } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
 import { STATUS_OPTIONS, PRIORITY_OPTIONS, ISSUETYPE_OPTIONS } from './ProjectTaskOptions';
 
 class ProjectTaskForm extends Component {
@@ -30,6 +31,7 @@ class ProjectTaskForm extends Component {
                 placeholder={ placeholder }
                 value={ fieldProps.input.value }
                 width={ 8 }
+                clearable={ true }
             />)
 
         if (type === 'date')
@@ -39,7 +41,7 @@ class ProjectTaskForm extends Component {
                     type="date"
                     { ...fieldProps.input }
                     width={ 8 }
-                    format="DD MMMM YYYY" />
+                    format="DD MMMM YYYY" required />
             </>)
     }
 
@@ -48,24 +50,23 @@ class ProjectTaskForm extends Component {
     }
 
     render() {
-        const { handleSubmit } = this.props;
-        console.log(this.props.initialValues);
+        const { handleSubmit, cancelLink } = this.props;
+
         return (
-            <>
-                 <Header as='h2' icon style={ { marginLeft:' 300px' } }>
-                    <Icon name={this.props.icon} />
-                    { this.props.formName }
-                </Header>
-                <Form onSubmit={ handleSubmit(this.onFormSubmit) }>
+            <div >
+                <Form onSubmit={ handleSubmit(this.onFormSubmit) } >
                     <Field name="summary" type="text" component={ this.renderInput } placeholder="Task Summary" />
                     <Field name="acceptanceCriteria" type="textArea" component={ this.renderInput } placeholder="Acceptance Criteria" style={ { whiteSpace: 'pre-wrap' } } />
                     <Field name="status" type="dropDown" options={ STATUS_OPTIONS } component={ this.renderInput } placeholder="Status" />
                     <Field name="priority" type="dropDown" options={ PRIORITY_OPTIONS } component={ this.renderInput } placeholder="Priority" />
                     <Field name="issueType" type="dropDown" options={ ISSUETYPE_OPTIONS } component={ this.renderInput } placeholder="issueType" />
                     <Field name="dueDate" type="date" component={ this.renderInput } placeholder="DueDate" />
-                    <Button type="submit" positive content={ this.props.buttonName } style={ { width: '30%', margin: '0 150px 50px' } } />
+                    <Button type="submit" positive content={ this.props.buttonName } />
+                    <Button as={ Link } basic color="yellow" content="Cancel" to={ cancelLink } />
+
                 </Form>
-            </>
+
+            </div>
         )
     }
 }

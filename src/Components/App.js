@@ -8,7 +8,6 @@ import Navbar from './Navbar/Navbar';
 import ProjectList from './Project/ProjectList';
 import CreateProject from './Project/CreateProject';
 import EditProject from './Project/EditProject';
-import ShowProject from './Project/ShowProject';
 import DeleteProject from './Project/DeleteProject';
 import Authentication from './Security/Authentication';
 import setHeaders from '../api/jsonAPI'
@@ -22,6 +21,7 @@ import SampleComponent from './Security/SampleComponent';
 import ProjectTaskDetails from './ProjectTask/ProjectTaskDetails';
 import ErrorComponent from './Error/ErrorComponent'
 import ProjectMetrics from './Project/ProjectMetrics/ProjectMetrics';
+import AssignedTask from './AssignedTasks/AssignedTask'
 
 const token = localStorage.token
 if (token) {
@@ -53,17 +53,17 @@ class App extends Component {
           /*public routes */
         }
         <Route path="/auth" exact component={ Authentication } />
-        <Route path="/" exact render={ () => <h2>WELCOME</h2> } />
+
         <Route path="/success" exact component={ SampleComponent } />
         {
           /*secured routes  */
         }
         <Switch>
+          <SecuredRoute exact path="/assigned-issues" component={ AssignedTask } />
           <SecuredRoute exact path="/dashboard" component={ ProjectList } />
           <SecuredRoute exact path="/project/new" component={ CreateProject } />
           <SecuredRoute exact path="/project/edit/:id" component={ EditProject } />
           <SecuredRoute exact path="/project/delete/:id" component={ DeleteProject } />
-          <SecuredRoute exact path='/project/:id' component={ ShowProject } />
 
           <SecuredRoute exact path='/project/:projectId/projectTask/' component={ ProjectTaskList } />
           <SecuredRoute exact path='/project/:projectId/new' component={ CreateProjectTask } />
@@ -72,6 +72,7 @@ class App extends Component {
           <SecuredRoute exact path='/project/:projectId/projectTask/edit/:projectTaskId/' component={ ProjectTaskEdit } />
 
           <SecuredRoute exact path='/project/:projectId/config' component={ ProjectMetrics } />
+
 
         </Switch>
       </>

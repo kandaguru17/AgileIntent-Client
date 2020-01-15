@@ -7,7 +7,6 @@ import { getComment, editComment } from '../../Actions/CommentActions';
 class CommentEdit extends Component {
 
     render() {
-        console.log(this.props)
        
         return (
             <>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Form, Button, List, Header } from 'semantic-ui-react'
+import { Segment, Form, Button, List, Header} from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { listProjectMembers, addProjectMember, removeProjectMember } from '../../../Actions/ProjectMemberActions'
 import { getProject } from '../../../Actions/ProjectActions'
@@ -52,19 +52,23 @@ class ProjectMembers extends Component {
         })
     }
 
+
+
+
     render() {
+
         return (
             <div style={ { overflow: 'auto' } }>
-                <Header as='h3' dividing style={ { margin: '100px 90px auto', width: '90vw' } }>
+                <Header as='h3' dividing style={ { margin: '50px auto', width: '90vw' ,marginBottom: '10px'} }>
                     Project Members
                 </Header>
 
-                <Segment.Group horizontal style={ { margin: '10px auto', width: '90vw', } }>
+                <Segment.Group horizontal style={ { margin: '0px auto', width: '90vw', } }>
                     <Segment >
                         <Form onSubmit={ this.addMember }>
                             <Form.Field width={ 8 }>
                                 <label>Add Member</label>
-                                <input placeholder='john@abc.com' name="username" id="add-member" onChange={ this.onChange } required/>
+                                <input  placeholder='john@abc.com' name="username" id="add-member" onChange={ this.onChange } required />
                             </Form.Field>
                             <Button basic color="teal" type='submit'>Add Member</Button>
                         </Form>
@@ -73,7 +77,7 @@ class ProjectMembers extends Component {
                         <Form onSubmit={ this.removeMember }>
                             <Form.Field width={ 8 }>
                                 <label>Remove Member</label>
-                                <input placeholder='john@abc.com' name="username" id="remove-member" onChange={ this.onChange } required/>
+                                <input  placeholder='john@abc.com' name="username" id="remove-member" onChange={ this.onChange } required />
                             </Form.Field>
                             <Button basic negative type='submit'>Remove Member</Button>
                         </Form>

@@ -15,7 +15,7 @@ class ProjectTaskList extends Component {
 
     renderProjectTasks = () => {
         return this.props.projectTasks.length !== 0 ?
-            <Segment >
+            <Segment style={ { maxHeight: '85vh', overflow: 'auto' } }>
                 <Card.Group >
                     { this.props.projectTasks.map(it => <ProjectTaskItem key={ it.projectTaskSequence } { ...it } />) }
                 </Card.Group>

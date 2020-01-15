@@ -44,7 +44,7 @@ class Authentication extends Component {
         return (
             <>
                 {/* { this.checkAlreadyLoggedIn() } */ }
-                {/* { this.checkValidationErrors() } */ }
+                 {/* { this.checkValidationErrors() } */}
                 <Image size="medium" src={ myLogo } centered />
                 <Segment placeholder style={ { width: '90%', margin: '0 auto', marginTop: '5px' } }>
                     <Grid columns={ 2 } relaxed='very' stackable>

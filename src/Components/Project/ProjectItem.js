@@ -10,10 +10,10 @@ class ProjectItem extends Component {
         const { project } = this.props;
 
         return (
-            <Card centered style={ { width: '80%', marginTop: '15px' } }>
+            <Card centered style={ { width: '80vw', margin: '15px auto' } }>
                 <Card.Content>
                     <Card.Header >{ project.projectIdentifier }</Card.Header>
-                    <Card.Description as={ Link } to={ `/project/${project.projectIdentifier}/config` } style={ { color: '#4183c4' } }>project metrics</Card.Description>
+                    <Card.Description as={ Link } to={ `/project/${project.projectIdentifier}/config` } style={ { color: '#4183c4' } }>Project Metrics</Card.Description>
                 </Card.Content>
 
                 <Card.Content>
