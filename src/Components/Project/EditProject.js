@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Dimmer, Loader,Icon,Header } from 'semantic-ui-react';
+import { Dimmer, Loader, Icon, Header } from 'semantic-ui-react';
 
 
 import ProjectForm from './ProjectForm';
@@ -38,22 +38,19 @@ class EditProject extends Component {
 
         return (
             <>
-               <Header as='h2' icon style={ { position: 'relative', top: 100, left: '0%', width: '90%'  } }>
+                <Header as='h3' icon style={ { position: 'relative', top: 100, left: '40px', width: '90%' } }>
                     <Icon name='edit' />
-                     Edit Project 
+                    Edit Project
                 </Header>
-            <div style={ { position: 'relative', top: 100, left: '27%', width: '100%' } }>
-                <ProjectForm onSubmit={ this.onSubmit } initialValues={ project } formName={ `Update Project` } cancelLink={`/dashboard`} />
-            </div>
+                <div style={ { position: 'relative', top: 100, left: '27%', width: '100%' } }>
+                    <ProjectForm onSubmit={ this.onSubmit } initialValues={ project } formName={ `Update Project` } cancelLink={ `/dashboard` } />
+                </div>
             </>
         )
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-
-
-    console.log(ownProps);
     return { project: state.projects[ownProps.match.params.id] };
 }
 

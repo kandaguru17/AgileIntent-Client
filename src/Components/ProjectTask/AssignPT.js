@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Input } from 'semantic-ui-react';
 
+
 export default class AssignPT extends Component {
 
     state = { username: '' }
@@ -19,7 +20,8 @@ export default class AssignPT extends Component {
 
         return (
             <form onSubmit={ this.onSubmit } >
-                <Input type="email" icon='users' iconPosition='left' placeholder='Assign To...' name="username" onChange={ this.onChange } id='assignInput' />
+                <Input type="email" icon='users' iconPosition='left' placeholder='john@abc.com' name="username" onChange={ this.onChange }
+                    id='assignInput' />
             </form>
         )
     }

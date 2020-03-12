@@ -8,18 +8,23 @@ class ProjectTaskForm extends Component {
 
     renderInput = (fieldProps) => {
         const { type, options, placeholder } = fieldProps;
+        let { touched, error } = fieldProps.meta;
+        error = (touched && error) ? { content: error } : false
 
         if (type === 'text')
             return (<Form.Input
                 { ...fieldProps.input }
                 width={ 8 } placeholder={ placeholder }
+                error={ error }
             />);
 
         if (type === 'textArea')
             return (<Form.TextArea
                 { ...fieldProps.input }
                 width={ 8 } rows="15"
-                placeholder={ placeholder } />)
+                placeholder={ placeholder }
+                error={ error }
+            />)
 
         if (type === 'dropDown')
             return (<Form.Select
@@ -32,6 +37,8 @@ class ProjectTaskForm extends Component {
                 value={ fieldProps.input.value }
                 width={ 8 }
                 clearable={ true }
+                error={ error }
+                required
             />)
 
         if (type === 'date')
@@ -41,7 +48,10 @@ class ProjectTaskForm extends Component {
                     type="date"
                     { ...fieldProps.input }
                     width={ 8 }
-                    format="DD MMMM YYYY" required />
+                    format="DD MMMM YYYY"
+                    error={ error }
+                    required />
+
             </>)
     }
 
@@ -71,8 +81,24 @@ class ProjectTaskForm extends Component {
     }
 }
 
-const validateForm = () => {
+const validateForm = (formValues) => {
     const err = {};
+
+    if (!formValues.summary)
+        err.summary = "Summary is required"
+
+    if (!formValues.acceptanceCriteria)
+        err.acceptanceCriteria = "Acceptance Criteria is required"
+
+    if (!formValues.status)
+        err.status = "Status is required"
+
+    if (!formValues.issueType)
+        err.issueType = "Issue Type is required"
+
+    if (!formValues.priority)
+        err.priority = "Priority is required"
+
     return err;
 }
 

@@ -1,3 +1,32 @@
-.assign-user:hover{
-    cursor:pointer;
+.assign-user:hover {
+    cursor: pointer;
+    border: 1px dotted black;
+    width: 40%;
+    margin: 0 auto
+}
+
+.user-list-item:hover {
+    background: rgb(222, 226, 226);
+}
+
+.user-list-item {
+    max-width: 100%;
+    word-wrap: break-word;
+    z-index: 100px;
+}
+
+#user-list {
+    position: relative;
+    width: 40%;
+    margin: 0px auto;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background: white;
+    max-height: '100px';
+    overflow: auto;
+    opacity: 1;
+}
+
+#active{
+    background: lightgrey;
 }

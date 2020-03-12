@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Card, Button, Message } from 'semantic-ui-react'
+import { Segment, Button, Message, Grid } from 'semantic-ui-react'
 import ProjectTaskItem from './ProjectTaskItem';
 import { connect } from 'react-redux';
 import { getAllProjectTasks } from '../../Actions/ProjectTaskActions';
@@ -16,9 +16,13 @@ class ProjectTaskList extends Component {
     renderProjectTasks = () => {
         return this.props.projectTasks.length !== 0 ?
             <Segment style={ { maxHeight: '85vh', overflow: 'auto' } }>
-                <Card.Group >
-                    { this.props.projectTasks.map(it => <ProjectTaskItem key={ it.projectTaskSequence } { ...it } />) }
-                </Card.Group>
+                <Grid>
+                    <Grid.Row columns={ 3 } >
+                        {/* <Card.Group > */ }
+                        { this.props.projectTasks.map(it => <ProjectTaskItem key={ it.projectTaskSequence } { ...it } />) }
+                        {/* </Card.Group> */ }
+                    </Grid.Row>
+                </Grid>
             </Segment>
             :
             <Message info >

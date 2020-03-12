@@ -17,11 +17,14 @@ import ProjectTaskList from './ProjectTask/ProjectTaskList';
 import CreateProjectTask from './ProjectTask/CreateProjectTask';
 import ProjectTaskDelete from './ProjectTask/ProjectTaskDelete';
 import ProjectTaskEdit from './ProjectTask/ProjectTaskEdit';
-import SampleComponent from './Security/SampleComponent';
+import RegisterComponent from './Security/RegisterComponent';
+import ConfirmAccount from './Security/ConfirmAccount';
 import ProjectTaskDetails from './ProjectTask/ProjectTaskDetails';
 import ErrorComponent from './Error/ErrorComponent'
 import ProjectMetrics from './Project/ProjectMetrics/ProjectMetrics';
 import AssignedTask from './AssignedTasks/AssignedTask'
+import LandingPage from './LandingPage/LandingPage';
+import ForgotPassword from './Security/ForgotPassword';
 
 const token = localStorage.token
 if (token) {
@@ -53,8 +56,10 @@ class App extends Component {
           /*public routes */
         }
         <Route path="/auth" exact component={ Authentication } />
-
-        <Route path="/success" exact component={ SampleComponent } />
+        <Route path="/" exact component={ LandingPage } />
+        <Route path="/success" exact component={ RegisterComponent } />
+        <Route path="/confirm-account" exact component={ ConfirmAccount } />
+        <Route path="/forgot-password" exact component={ ForgotPassword } />
         {
           /*secured routes  */
         }

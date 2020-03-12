@@ -1,8 +1,9 @@
 import { GET_PROJECT_TASKS, CREATE_PROJECT_TASK, GET_PROJECT_TASK, DELETE_PROJECT_TASK, UPDATE_PROJECT_TASK } from './types';
 import axios from 'axios'
 import history from '../history'
+import { APP_URI } from '../AppConst'
 
-const ROOT_URL = `http://localhost:8080/api/backlog`;
+const ROOT_URL = `${APP_URI}/api/backlog`
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
@@ -30,7 +31,7 @@ export const getAllProjectTasks = (projectId) => async dispatch => {
 export const createProjectTask = (projectId, formValues) => async (dispatch) => {
 
     try {
-        const res = await axios.post(`http://localhost:8080/api/backlog/${projectId}`, formValues, { headers });
+        const res = await axios.post(`${ROOT_URL}/${projectId}`, formValues, { headers });
         dispatch({ type: CREATE_PROJECT_TASK, payload: res.data });
         dispatch({ type: 'ERROR', payload: {} });
         history.push(`/project/${projectId}/projectTask`)

@@ -3,21 +3,19 @@ import { connect } from 'react-redux';
 import { Segment, Dimmer, Container, Header, Image, Loader, Button, Dropdown, Divider, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-
-
 import DropZoneComponent from '../Attachments/DropZoneComponent'
 import { getProjectTask } from '../../Actions/ProjectTaskActions';
 import { PRIORITY_OPTIONS } from './ProjectTaskOptions';
 import CommentAdd from '../Comments/CommentAdd';
 import CommentList from '../Comments/CommentList';
 import AttachmentList from '../Attachments/AttachmentList';
-import AssignPT from './AssignPT'
+import AssignPT from './AssignPT1'
 import '../../styles/assignPT.css'
 import store from '../../Reducers/index'
 import axios from 'axios';
 
-
-const ROOT_URL = `http://localhost:8080/api/members/assign`
+import { APP_URI } from '../../AppConst'
+const ROOT_URL = `${APP_URI}/api/members/assign`
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
@@ -26,28 +24,35 @@ const headers = {
 class ProjectTaskDetails extends Component {
 
 
-    state={editingMode:false}
+    state = { editingMode: false }
 
     componentDidMount() {
         const { projectId, projectTaskId } = this.props.match.params;
         this.props.getProjectTask(projectId, projectTaskId);
 
-        window.addEventListener("keydown", (e)=>{
-            if(e.key==='Escape')
-                this.setState({editingMode:false});
-        },false)
+        ["click", "keydown"].forEach(it => {
+            window.addEventListener(it, (e) => {
+                if (it === "keydown" && e.key === 'Escape')
+                    this.setState({ editingMode: false });
+
+                if (it === "click" && this.state.editingMode && e.target.id !== 'assignInput' && e.target.id !== 'assign-user')
+                    this.setState({ editingMode: false });
+            }, false)
+        })
+
     }
 
-  
-    onSubmit = async (e,username) => {
+
+    onSubmit = async (e, username) => {
         const { dispatch } = store;
+
         try {
             const { projectId, projectTaskId } = this.props.match.params;
             e.preventDefault();
             await axios.post(`${ROOT_URL}/${projectId}/${projectTaskId}`, username, { headers });
-            document.getElementById('assignInput').value=''
+            //document.getElementById('assignInput').value = ''
             dispatch(getProjectTask(projectId, projectTaskId));
-            this.setState({editingMode:false})
+            this.setState({ editingMode: false })
         } catch (err) {
             console.log(err.response);
             if (err.response) return dispatch({ type: 'ERROR', payload: err.response.data })
@@ -64,27 +69,25 @@ class ProjectTaskDetails extends Component {
         }).text
     }
 
-
-    onClick=()=>{
-        this.setState(prevState=>({
-            editingMode:!prevState.editingMode
+    onClick = () => {
+        this.setState(prevState => ({
+            editingMode: !prevState.editingMode
         }));
     }
 
+    renderAssignedTo = () => {
+        const { user } = this.props.projectTask;
+        const { editingMode } = this.state;
 
-    renderAssignedTo=()=>{
-        const {user}=this.props.projectTask;
-        const {editingMode}=this.state;
+        if (editingMode)
+            return <AssignPT { ...this.props } onSubmit={ this.onSubmit } />
 
-        if(editingMode)
-            return <AssignPT { ...this.props } onSubmit={this.onSubmit} />
-
-       return(
-           <>
-            <p onClick={this.onClick} className="assign-user"><Icon name="user"  />
-            { user !== null ? `${user.firstName} ${user.lastName}` : <em>Unassigned</em> }</p>
-           </>
-       )
+        return (
+            <>
+                <p id="assign-user" onClick={ this.onClick } className="assign-user"><Icon name="user" />
+                    { user !== null ? `${user.firstName} ${user.lastName}` : <em>Unassigned</em> }</p>
+            </>
+        )
     }
 
     render() {
@@ -99,7 +102,8 @@ class ProjectTaskDetails extends Component {
                         src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
                 </Segment>
             )
-        const { projectTaskSequence, summary, priority, status, createdAt, updatedAt, acceptanceCriteria, projectIdentifier, dueDate, issueType, user } = this.props.projectTask;
+
+        const { projectTaskSequence, summary, priority, status, createdAt, updatedAt, acceptanceCriteria, projectIdentifier, dueDate, issueType } = this.props.projectTask;
 
         return (
             <>
@@ -113,7 +117,7 @@ class ProjectTaskDetails extends Component {
                             </p>
                         </Container>
                     </Segment>
-                    <Segment.Group horizontal>
+                    <Segment.Group horizontal style={ { height: '350px' } }>
 
                         <Segment textAlign="center" basic>
                             <Header>Type :</Header>
@@ -122,8 +126,8 @@ class ProjectTaskDetails extends Component {
                             <p>{ status }</p>
                             <Header>Priority :</Header>
                             <p>{ this.renderPriority(priority) }</p>
-                            <Header>Assigned to : </Header>
-                                {this.renderAssignedTo()}
+                            <Header className="border-hover"  >Assigned to : </Header>
+                            { this.renderAssignedTo() }
                         </Segment>
 
                         <Segment textAlign="center" basic >

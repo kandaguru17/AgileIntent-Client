@@ -3,7 +3,9 @@ import { LIST_PROJECT_MEMBERS, ADD_PROJECT_MEMBER, REMOVE_PROJECT_MEMBER } from 
 
 
 
-const ROOT_URL = `http://localhost:8080/api/members`;
+import { APP_URI } from '../AppConst'
+
+const ROOT_URL = `${APP_URI}/api/members`
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'content-type': 'application/json'

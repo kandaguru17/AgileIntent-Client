@@ -7,8 +7,9 @@ import {
     DELETE_PROJECT
 } from './types'
 
+import { APP_URI } from '../AppConst'
 
-const ROOT_URL = `http://localhost:8080/api`;
+const ROOT_URL = `${APP_URI}/api`
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',

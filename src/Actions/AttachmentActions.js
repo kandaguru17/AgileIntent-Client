@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { GET_ALL_ATTACHMENTS, DOWNLOAD_ATTACHMENT, ADD_ATTACHMENTS, DELETE_ATTACHMENT } from './types';
+import { APP_URI } from '../AppConst'
 
-const ROOT_URL = `http://localhost:8080/api/attachments`;
+const ROOT_URL = `${APP_URI}/api/attachments`;
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'content-type': 'multipart/form-data'
@@ -60,7 +61,6 @@ export const uploadAttachment = (projectId, projectTaskId, files) => async dispa
     try {
         const formData = new FormData();
         files.forEach(file => formData.append('files', file));
-
         const res = await axios.post(`${ROOT_URL}/multipleUpload/${projectId}/${projectTaskId}`, formData, { headers });
         dispatch({ type: ADD_ATTACHMENTS, payload: res.data });
         dispatch({ type: 'ERROR', payload: {} })

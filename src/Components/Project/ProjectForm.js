@@ -37,15 +37,16 @@ class ProjectForm extends Component {
     }
 
     onFormSubmit = (formValues) => {
+        this.setState({ isLoading: true })
         this.props.onSubmit(formValues);
     }
 
     render() {
         const { handleSubmit, formName, cancelLink } = this.props;
+
         return (
             <>
                 <Form onSubmit={ handleSubmit(this.onFormSubmit) } >
-                    {/* <Form.Group grouped style={ { marginLeft: '33%' } }> */ }
                     <Field name="projectIdentifier"
                         component={ this.renderInput }
                         fieldPlaceholder="Enter Project Identifier"
@@ -55,7 +56,6 @@ class ProjectForm extends Component {
                     <Field name="description" component={ this.renderTextArea } fieldPlaceholder=" Project Description" />
                     <Field name="startDate" component={ this.renderDate } fieldPlaceholder="Project Start Date" />
                     <Field name="endDate" component={ this.renderDate } fieldPlaceholder="Project End Date" />
-                    {/* <Button positive type='submit' icon="plus" content={ this.props.formName } style={ { width: '30%', margin: '0 150px 50px' } } ></Button> */ }
                     <Button type="submit" positive content={ this.props.formName } />
                     <Button as={ Link } basic color="yellow" content="Cancel" to={ cancelLink } />
                 </Form>

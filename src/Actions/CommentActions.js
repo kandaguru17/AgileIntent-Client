@@ -2,8 +2,9 @@ import axios from 'axios'
 import history from '../history';
 import { reset } from 'redux-form'
 import { ADD_COMMENT, GET_ALL_COMMENTS, GET_COMMENT, DELETE_COMMENT, EDIT_COMMENT } from './types'
+import { APP_URI } from '../AppConst'
 
-const ROOT_URL = `http://localhost:8080/api/comments`;
+const ROOT_URL = `${APP_URI}/api/comments`;
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',

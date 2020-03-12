@@ -5,8 +5,6 @@ import './comments.css';
 
 class CommentForm extends Component {
 
-
-
     renderInput = (fieldProps) => {
 
         const { type, placeholder } = fieldProps;
@@ -23,7 +21,7 @@ class CommentForm extends Component {
     }
 
     render() {
-        console.log(this.props.form === 'commentEdit')
+
         return (
             <div>
                 <Form reply onSubmit={ this.props.handleSubmit(this.onSubmit) }>

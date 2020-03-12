@@ -14,8 +14,10 @@ class ProjectList extends Component {
     }
 
     renderProjectList = () => {
-        return this.props.projects.length !== 0 ?
-            this.props.projects.map(project => <ProjectItem project={ project } key={ project.projectIdentifier } />) :
+        const { projects, auth } = this.props;
+
+        return projects.length !== 0 ?
+            projects.map(project => <ProjectItem project={ project } auth={ auth } key={ project.projectIdentifier } />) :
             <Message info style={ { margin: '100px auto', width: '80vw' } }>No Projects Created</Message>
     }
 
@@ -33,7 +35,7 @@ class ProjectList extends Component {
 
 
 const mapStateToProps = (state) => {
-    return { projects: Object.values(state.projects) }
+    return { auth: state.auth, projects: Object.values(state.projects) }
 
 }
 

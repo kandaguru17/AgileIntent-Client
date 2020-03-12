@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Button, Header, Form, Icon } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
+
 
 class LoginForm extends Component {
+
+
 
     renderInput = (fieldProps) => {
         let { touched, error } = fieldProps.meta;
@@ -12,13 +16,15 @@ class LoginForm extends Component {
         )
     }
 
+
     onFormSubmit = (formValues) => {
-        console.log(formValues);
         this.props.authenticate(formValues);
     }
 
+
+
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, isLoading } = this.props;
         return (
             <>
                 <Form onSubmit={ handleSubmit(this.onFormSubmit) }>
@@ -28,8 +34,12 @@ class LoginForm extends Component {
                     </Header>
                     <Field component={ this.renderInput } placeholder="Email" width={ 6 } name="username"></Field>
                     <Field component={ this.renderInput } placeholder="Password" width={ 6 } type="password" name="password"></Field>
-                    <Button primary type="submit" content="Log In"></Button>
+                    <Button primary loading={ isLoading } disabled={ isLoading } type="submit" content="Log In" />
+                    <Form.Field>
+                        <Link style={ { marginLeft: '50px' } } to="/forgot-password">Forgot Password ?</Link>
+                    </Form.Field>
                 </Form>
+
             </>
 
         )

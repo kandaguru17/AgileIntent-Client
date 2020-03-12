@@ -7,7 +7,8 @@ class ProjectItem extends Component {
 
     render() {
 
-        const { project } = this.props;
+        const { project, auth } = this.props;
+        const { username } = auth.user;
 
         return (
             <Card centered style={ { width: '80vw', margin: '15px auto' } }>
@@ -32,8 +33,8 @@ class ProjectItem extends Component {
 
                     <Button.Group floated="right">
                         <Button as={ Link } to={ `/project/${project.projectIdentifier}/projectTask` } basic color="green" style={ { marginRight: '2px' } }>View Project Board</Button>
-                        <Button color="blue" as={ Link } to={ `/project/edit/${project.projectIdentifier}` } basic style={ { marginRight: '2px' } }>Update Project</Button>
-                        <Button as={ Link } to={ `/project/delete/${project.projectIdentifier}` } negative basic >Delete Project</Button>
+                        <Button color="blue" as={ Link } to={ `/project/edit/${project.projectIdentifier}` } basic style={ { marginRight: '2px' } } disabled={ project.reportingPerson === username ? false : true }>Update Project</Button>
+                        <Button as={ Link } to={ `/project/delete/${project.projectIdentifier}` } negative basic disabled={ project.reportingPerson === username ? false : true }>Delete Project</Button>
                     </Button.Group>
                 </Card.Content>
 

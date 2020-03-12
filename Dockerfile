@@ -2,6 +2,7 @@
 FROM tiangolo/node-frontend:latest as ai-frontend-build
 WORKDIR /agileIntent/frontend
 
+
 # Step 1 - Download all package dependencies first.
 # We will redownload dependencies only when packages change.
 COPY package.json package-lock.json ./

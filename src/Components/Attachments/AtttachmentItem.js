@@ -24,7 +24,6 @@ export default class AtttachmentItem extends Component {
             return 'loading';
 
         return (
-
             <Grid.Column style={ { marginBottom: '10px' } }>
                 <Card style={ { height: '100%' } }>
                     <Card.Content textAlign="center" >
@@ -34,13 +33,11 @@ export default class AtttachmentItem extends Component {
                         </Header>
                     </Card.Content>
                     <Card.Content extra>
-                        <Icon corner name="delete" link onClick={ this.deleteAttachment } />
-                        <Icon corner name="download" link onClick={ this.downloadAttachment } />
+                        <Icon corner name="trash" color="black" link onClick={ this.deleteAttachment } />
+                        <Icon corner name="download" color="black" link onClick={ this.downloadAttachment } />
                     </Card.Content>
                 </Card>
             </Grid.Column>
-
-
         )
     }
 }

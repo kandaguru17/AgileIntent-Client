@@ -1,0 +1,66 @@
+                .slideshow {
+                    position: fixed;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 0;
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .slideshow li {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-size: cover;
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                    opacity: 0;
+                    z-index: 0;
+                    animation: imageAnimation 50s linear infinite;
+                }
+
+                .slideshow li:nth-child(1) {
+                    background-image: url(https://res.cloudinary.com/dyzh4obz4/image/upload/v1571540602/MyLogo_bqljwr.png)
+                }
+
+                .slideshow li:nth-child(2) {
+                    background-image: url(https://plan.io/images/blog/implementing-agile-project-management.png);
+                    animation-delay: 10s;
+                }
+
+                .slideshow li:nth-child(3) {
+                    background-image: url(https://hygger.io/blog/wp-content/uploads/2018/10/agile-main-1.jpg);
+                    animation-delay: 20s;
+                }
+
+                .slideshow li:nth-child(4) {
+                    background-image: url(https://d30s2hykpf82zu.cloudfront.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2019/09/Agile-Manifesto.jpg);
+                    animation-delay: 30s;
+                }
+
+                .slideshow li:nth-child(5) {
+                    background-image: url(https://albedo.dev/wp-content/uploads/2018/05/Agile-Methodology-benefit-1-710x355.png);
+                    animation-delay: 40s;
+                }
+
+                @keyframes imageAnimation {
+                    0% {
+                        opacity: 0;
+                        animation-timing-function: ease-in;
+                    }
+                    10% {
+                        opacity: 1;
+                        animation-timing-function: ease-out;
+                    }
+                    20% {
+                        opacity: 1
+                    }
+                    30% {
+                        opacity: 0
+                    }
+                }

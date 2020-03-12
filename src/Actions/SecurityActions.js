@@ -3,8 +3,10 @@ import setHeaders from '../api/jsonAPI';
 import history from '../history';
 import axios from 'axios';
 import { LOG_OUT, LOGIN, REGISTER } from './types'
+import { APP_URI } from '../AppConst'
 
-const ROOT_URL = `http://localhost:8080/api`;
+const ROOT_URL = `${APP_URI}/api`
+
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
@@ -13,6 +15,7 @@ const headers = {
 export const authenticate = (formValues) => async dispatch => {
 
     try {
+
         const res = await axios.post(`${ROOT_URL}/users/authenticate`, formValues, { headers });
         const { authenticated, token } = res.data;
         localStorage.setItem('token', token);
@@ -64,3 +67,18 @@ export const registerUser = (formValues) => async dispatch => {
     }
 
 }
+
+
+export const sendForgotPasswordEmail = (formValues) => async dispatch => {
+    try {
+        console.log("sending email ....")
+        await axios.post(`${ROOT_URL}/users/forgotPassword`, formValues, headers);
+    } catch (err) {
+        console.log(err);
+        if (err.response) return dispatch({ type: 'ERROR', payload: err.response.data })
+        if (err.request) return dispatch({ type: 'ERROR', payload: err.request })
+        if (err.message) return dispatch({ type: 'ERROR', payload: err.message })
+        return dispatch({ type: 'ERROR', payload: err.config });
+    }
+}
+

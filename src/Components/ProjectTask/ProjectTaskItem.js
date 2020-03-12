@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Icon, Header } from 'semantic-ui-react';
+import { Card, Icon, Header, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { PRIORITY_OPTIONS } from './ProjectTaskOptions';
 import '../../styles/projectTaskShow.css';
@@ -9,7 +9,6 @@ class ProjectTaskItem extends Component {
 
     renderPriority = (priority) => {
         return PRIORITY_OPTIONS.find(it => {
-            console.log(it.text)
             return parseInt(it.key) === priority;
         }).text
     }
@@ -17,8 +16,8 @@ class ProjectTaskItem extends Component {
     render() {
         const { projectTaskSequence, summary, priority, status, createdAt, updatedAt, acceptanceCriteria, projectIdentifier, issueType } = this.props;
         return (
-            <>
-                <Card style={ { width: '32.29%' } }>
+            <Grid.Column style={ { marginBottom: '10px' } }>
+                <Card style={ { height: '100%', width: '100%' } }>
                     <Card.Content>
                         <span>
                             <Header as={ Link }
@@ -40,7 +39,7 @@ class ProjectTaskItem extends Component {
                         <Icon name='calendar' /> Last Updated : { updatedAt ? updatedAt : <em>No updates yet</em> }
                     </Card.Content>
                 </Card>
-            </>
+            </Grid.Column>
         )
     }
 }

@@ -4,10 +4,10 @@ import { Button, Header, Form, Icon } from 'semantic-ui-react';
 
 class RegistrationForm extends Component {
 
+
+
     renderInput = (fieldProps) => {
         let { touched, error } = fieldProps.meta;
-
-        console.log(error, touched)
         error = (touched && error) ? true : false;
         return (
             <Form.Input error={ error } { ...fieldProps }></Form.Input>
@@ -19,7 +19,7 @@ class RegistrationForm extends Component {
     }
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, isLoading } = this.props;
 
         return (
             <Form onSubmit={ handleSubmit(this.registerUser) }>
@@ -32,7 +32,7 @@ class RegistrationForm extends Component {
                 <Field name="lastName" placeholder="Last Name" component={ this.renderInput } width={ 6 }></Field>
                 <Field name="password" placeholder="Password" component={ this.renderInput } type="password" width={ 6 }></Field>
                 <Field name="confirmPassword" placeholder="Confirm Password" component={ this.renderInput } type="password" width={ 6 }></Field>
-                <Button positive type="submit" content="Register" />
+                <Button positive type="submit" content="Register" disabled={ isLoading } loading={ isLoading } />
             </Form>
         )
     }
